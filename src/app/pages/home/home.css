@@ -1,0 +1,99 @@
+.news-card{
+
+display:flex;
+gap:20px;
+
+background:#050505;
+
+border-radius:20px;
+
+padding:20px;
+margin-bottom:30px;
+
+transition:0.3s;
+
+border:1px solid rgba(255,255,255,0.05);
+
+box-shadow:
+0 0 10px rgba(0,234,255,.15);
+}
+
+/* HOVER CYBERPUNK */
+
+.news-card:hover{
+
+transform:translateY(-5px);
+
+box-shadow:
+0 0 20px #00eaff,
+0 0 30px #9b4dff,
+0 0 40px #ff2ed1;
+}
+
+/* IMAGEN */
+
+.news-img{
+
+width:220px;
+height:140px;
+
+background:#222;
+
+border-radius:15px;
+}
+
+/* TITULO */
+
+.news-title{
+
+font-size:24px;
+
+margin-bottom:10px;
+
+text-shadow:
+0 0 5px #9b4dff;
+}
+/* BOTON NEON */
+.btn-neon{
+margin-top:10px;
+padding:10px 20px;
+
+background:linear-gradient(
+45deg,
+#00eaff,
+#9b4dff,
+#ff2ed1
+);
+
+border:none;
+border-radius:20px;
+
+color:white;
+font-size:14px;
+font-weight:bold;
+
+cursor:pointer;
+transition:0.3s;
+
+box-shadow:
+0 0 10px #9b4dff,
+0 0 20px #ff2ed1;
+}
+
+/* HOVER */
+.btn-neon:hover{
+transform:scale(1.1);
+
+box-shadow:
+0 0 20px #00eaff,
+0 0 30px #9b4dff,
+0 0 40px #ff2ed1;
+}
+
+/* CLICK */
+.btn-neon:active{
+transform:scale(0.95);
+
+box-shadow:
+0 0 10px #ff2ed1 inset;
+}
