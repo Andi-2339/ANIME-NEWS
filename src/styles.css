@@ -156,13 +156,11 @@ input:focus {
 
 /* IMAGEN */
 .news-img {
-  width: 200px;
-  height: 130px;
+  width: 250px;
+  height: 150px;
+  object-fit: cover;
   border-radius: 15px;
-
-  background: linear-gradient(135deg,
-      #222,
-      #444);
+  background: linear-gradient(135deg, #222, #444);
 }
 
 /* BOTONES */
@@ -247,9 +245,77 @@ footer * {
   font-size: 12px;
 }
 
-/* ==========================================================================
-   COMPONENT STYLES (MIGRATED FROM INDIVIDUAL FILES)
-   ========================================================================== */
+/* SLIDER */
+.slider {
+  position: relative;
+  width: 100%;
+  height: 400px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #000;
+  border-bottom: 4px solid var(--pink);
+}
+
+.slider img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.6;
+}
+
+.slider-text {
+  position: absolute;
+  text-align: center;
+  z-index: 2;
+}
+
+.slider-text h1 {
+  font-size: 3em;
+  color: var(--blue);
+  text-shadow: 0 0 20px var(--blue);
+}
+
+.cards {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  margin-top: 20px;
+}
+
+.card {
+  background: rgba(10, 10, 10, 0.9);
+  border: 1px solid var(--purple);
+  border-radius: 15px;
+  padding: 30px;
+  display: flex;
+  align-items: center;
+  gap: 40px;
+  transition: 0.3s;
+}
+
+.card img {
+  width: 450px;
+  height: 280px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.card-text {
+  flex: 1;
+}
+
+.card h3 {
+  color: var(--pink);
+  margin-bottom: 15px;
+  font-size: 2em;
+}
+
+.card p {
+  font-size: 1.2em;
+  margin-bottom: 20px;
+}
 
 /* --- APP COMPONENT (app.css) --- */
 /* Variables from app.css (using unique names to avoid conflicts) */
@@ -381,7 +447,7 @@ app-root .main-nav ul {
   gap: 40px;
 }
 
-app-root .main-nav a {
+app-header .main-nav a {
   color: #fff;
   text-decoration: none;
   font-weight: bold;
@@ -389,7 +455,8 @@ app-root .main-nav a {
   transition: all 0.3s;
 }
 
-app-root .main-nav a:hover {
+app-header .main-nav a:hover,
+app-header .main-nav a.active {
   color: #ff00ff;
   text-shadow: 0 0 15px #ff00ff;
   transform: scale(1.1);
@@ -397,10 +464,10 @@ app-root .main-nav a:hover {
 
 app-root .content-wrapper {
   display: flex;
-  max-width: 1400px;
+  max-width: 1600px;
   margin: 40px auto;
   gap: 50px;
-  padding: 0 40px;
+  padding: 0 2cm;
 }
 
 app-root .main-content {
@@ -536,64 +603,71 @@ app-root .sidebar-widget a:hover {
   display: inline-block;
 }
 
-app-root .footer-main {
+app-header .header {
+  background-color: #050505;
+  border-bottom: 5px solid #ff00ff;
+  padding: 20px 2cm;
+  box-shadow: 0 10px 30px rgba(255, 0, 255, 0.3);
+}
+
+app-footer .footer {
   background-color: #050505;
   border-top: 5px solid #00ffff;
-  padding: 70px 5% 40px;
+  padding: 70px 2cm 40px;
   margin-top: 80px;
   box-shadow: 0 -15px 40px rgba(0, 255, 255, 0.4);
 }
 
-app-root .footer-grid {
+app-footer .footer-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 50px;
   margin-bottom: 50px;
 }
 
-app-root .footer-col h3 {
+app-footer .footer-col h3 {
   color: #bf00ff;
   margin-bottom: 30px;
   font-size: 2em;
   text-shadow: 0 0 15px #bf00ff;
 }
 
-app-root .brand-col .footer-logo {
+app-footer .brand-col .footer-logo {
   max-width: 220px;
   margin-bottom: 25px;
   filter: drop-shadow(0 0 15px #ff00ff);
 }
 
-app-root .stats-text {
+app-footer .stats-text {
   font-size: 1.3em;
   color: #00ffff;
   text-shadow: 0 0 8px #00ffff;
 }
 
-app-root .text-col .simple-menu li {
+app-footer .text-col .simple-menu li {
   margin-bottom: 15px;
 }
 
-app-root .text-col a {
+app-footer .text-col a {
   color: #fff;
   text-decoration: none;
   font-size: 1.3em;
   transition: all 0.3s;
 }
 
-app-root .text-col a:hover {
+app-footer .text-col a:hover {
   color: #ff00ff;
   text-shadow: 0 0 15px #ff00ff;
 }
 
-app-root .col-form .contact-form {
+app-footer .col-form .contact-form {
   display: flex;
   flex-direction: column;
   gap: 20px;
 }
 
-app-root .col-form input,
-app-root .col-form textarea {
+app-footer .col-form input,
+app-footer .col-form textarea {
   background-color: #000;
   border: 2px solid #333;
   padding: 15px;
@@ -603,14 +677,15 @@ app-root .col-form textarea {
   font-size: 1.1em;
 }
 
-app-root .col-form input:focus,
-app-root .col-form textarea:focus {
+app-footer .col-form input:focus,
+app-footer .col-form textarea:focus {
   outline: none;
   border-color: #bf00ff;
   box-shadow: 0 0 20px #bf00ff;
 }
 
-app-root .map-placeholder {
+app-footer .map-placeholder,
+app-footer .map {
   background-color: #000;
   border: 3px dashed #00ffff;
   height: 180px;
@@ -622,7 +697,7 @@ app-root .map-placeholder {
   font-size: 1.2em;
 }
 
-app-root .footer-bottom {
+app-footer .footer-bottom {
   border-top: 3px solid #222;
   padding-top: 40px;
   display: flex;
@@ -632,7 +707,7 @@ app-root .footer-bottom {
   gap: 30px;
 }
 
-app-root .privacy-policies a {
+app-footer .privacy-policies a {
   color: #00ffff;
   text-decoration: none;
   font-size: 1.3em;
@@ -640,18 +715,18 @@ app-root .privacy-policies a {
   transition: all 0.3s;
 }
 
-app-root .privacy-policies a:hover {
+app-footer .privacy-policies a:hover {
   color: #ff00ff;
   text-shadow: 0 0 15px #ff00ff;
   text-decoration: underline;
 }
 
-app-root .social-media {
+app-footer .social-media {
   display: flex;
   gap: 30px;
 }
 
-app-root .social-btn {
+app-footer .social-btn {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -667,14 +742,14 @@ app-root .social-btn {
   transition: all 0.4s;
 }
 
-app-root .social-btn:hover {
+app-footer .social-btn:hover {
   transform: translateY(-10px) scale(1.2);
   border-color: #00ffff;
   box-shadow: 0 0 30px #00ffff;
   color: #00ffff;
 }
 
-app-root .modal-overlay {
+app-footer .modal-overlay {
   position: fixed;
   top: 0;
   left: 0;
@@ -688,24 +763,24 @@ app-root .modal-overlay {
   z-index: 2000;
 }
 
-app-root .modal-content-wrapper {
+app-footer .modal-content-wrapper {
   max-width: 700px;
   width: 90%;
 }
 
-app-root .modal-content {
+app-footer .modal-content {
   padding: 50px;
   text-align: center;
 }
 
-app-root .modal-content h2 {
+app-footer .modal-content h2 {
   color: #ff00ff;
   margin-bottom: 30px;
   font-size: 2.8em;
   text-shadow: 0 0 15px #ff00ff;
 }
 
-app-root .modal-content p {
+app-footer .modal-content p {
   margin-bottom: 30px;
   font-size: 1.4em;
   color: #ddd;
@@ -766,83 +841,6 @@ app-home .btn-neon:active {
   box-shadow: 0 0 10px #ff2ed1 inset;
 }
 
-/* --- FOOTER COMPONENT (footer.css) --- */
-app-footer footer {
-  padding: 15px;
-  background: black;
-  border-top: 1px solid #9b4dff;
-}
-
-app-footer footer h1,
-app-footer footer h2,
-app-footer footer h3 {
-  font-size: 14px !important;
-  text-shadow: none !important;
-}
-
-app-footer .footer-container {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: flex-start;
-  flex-wrap: wrap;
-  gap: 20px;
-  max-width: 1000px;
-  margin: auto;
-}
-
-app-footer .footer-box {
-  flex: 1;
-  min-width: 150px;
-  max-width: 200px;
-}
-
-app-footer .logo {
-  width: 60px;
-  border-radius: 10px;
-}
-
-app-footer .footer-box h4 {
-  font-size: 13px;
-  margin-bottom: 5px;
-}
-
-app-footer .footer-box p,
-app-footer .footer-box a {
-  font-size: 11px;
-  margin-bottom: 3px;
-  display: block;
-  color: white;
-  opacity: 0.8;
-}
-
-app-footer footer input,
-app-footer footer textarea {
-  width: 100%;
-  padding: 4px;
-  font-size: 11px;
-  margin-bottom: 4px;
-  background: black;
-  border: 1px solid #00eaff;
-  color: white;
-  border-radius: 6px;
-}
-
-app-footer footer textarea {
-  height: 40px;
-  resize: none;
-}
-
-app-footer .map {
-  height: 100px;
-  width: 100%;
-  overflow: hidden;
-  border-radius: 8px;
-}
-
-app-footer .map iframe {
-  filter: brightness(0.8);
-}
 
 /* --- SIDEBAR COMPONENT (sidebar.css) --- */
 app-sidebar .sidebar {

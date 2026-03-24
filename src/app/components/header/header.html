@@ -1,23 +1,23 @@
 <header class="header">
-
-    <div class="top">
-
-        <img src="src/assets/logo.png" style="width:200px;">
-
-        <div class="search-box">
-            <input type="text" placeholder="Buscar anime o manga...">
-        </div>
-
+  <div class="top-desc">
+    <p>Bienvenido a la mejor fuente de noticias de Anime y Manga a nivel mundial</p>
+  </div>
+  <div class="header-main">
+    <div class="logo-container">
+      <img src="assets/logo.png" alt="Anime News Logo" class="logo">
     </div>
-
-    <nav class="menu">
-
-        <a routerLink="/">Inicio</a>
-        <a routerLink="/contact">Contacto</a>
-        <a routerLink="/privacy">Privacidad</a>
-        <a href="#">Anime</a>
-        <a href="#">Manga</a>
-
-    </nav>
-
+    <div class="search-container">
+      <input type="text" placeholder="Buscar noticias, animes o mangas..." class="search-bar" [(ngModel)]="searchQuery" (keyup.enter)="onSearch()">
+      <button class="search-btn" (click)="onSearch()">Buscar</button>
+    </div>
+  </div>
+  <nav class="main-nav">
+    <ul>
+      <li><a routerLink="/" routerLinkActive="active">Inicio</a></li>
+      <li><a routerLink="/noticias" routerLinkActive="active">Noticias</a></li>
+      <li><a routerLink="/catalogo" routerLinkActive="active">Catálogo</a></li>
+      <li><a routerLink="/mangas" routerLinkActive="active">Mangas</a></li>
+      <li><a routerLink="/temporadas" routerLinkActive="active">Temporadas</a></li>
+    </ul>
+  </nav>
 </header>

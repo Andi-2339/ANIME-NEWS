@@ -1,47 +1,13 @@
-import { Component, ElementRef } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
+import { Header } from './components/header/header';
+import { Footer } from './components/footer/footer';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, RouterModule, Header, Footer],
   templateUrl: './app.html'
 })
-export class App {
-  searchQuery = '';
-  showPrivacyModal = false;
-
-  constructor(private elementRef: ElementRef) {}
-
-  onSearch() {
-    if (this.searchQuery.trim()) {
-      alert(`Buscando: ${this.searchQuery}`);
-      this.searchQuery = '';
-    }
-  }
-
-  scrollTo(sectionId: string, event: Event) {
-    event.preventDefault();
-    const element = this.elementRef.nativeElement.querySelector(`#${sectionId}`);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }
-  }
-
-  openSocial(platform: string, event: Event) {
-    event.preventDefault();
-    const urls: Record<string, string> = {
-      facebook: 'https://facebook.com/animenews',
-      twitter: 'https://twitter.com/animenews',
-      instagram: 'https://instagram.com/animenews',
-      youtube: 'https://youtube.com/animenews'
-    };
-    window.open(urls[platform], '_blank');
-  }
-
-  togglePrivacy(event: Event) {
-    event.preventDefault();
-    this.showPrivacyModal = !this.showPrivacyModal;
-  }
-}
+export class App {}
