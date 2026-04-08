@@ -18,7 +18,7 @@ import { SidebarComponent } from '../../components/sidebar/sidebar';
           </div>
 
           <section id="autores" style="margin-top: 50px;">
-            <h2>🎨 Directorio de Autores</h2>
+            <h2>Directorio de Autores</h2>
             <p>Conoce a las mentes maestras detrás de tus historias favoritas.</p>
             <div class="neon-animated-box" style="padding: 20px;">
               <p>Eiichiro Oda (One Piece)</p>
@@ -34,4 +34,4 @@ import { SidebarComponent } from '../../components/sidebar/sidebar';
     </div>
   `
 })
-export class Catalogo {}
+export class Catalogo { }

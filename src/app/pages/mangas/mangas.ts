@@ -19,7 +19,7 @@ import { SidebarComponent } from '../../components/sidebar/sidebar';
           </div>
 
           <section id="convenciones" style="margin-top: 50px;">
-            <h2>🎫 Guía de Convenciones</h2>
+            <h2> Guía de Convenciones</h2>
             <p>Prepárate para los eventos más grandes del año.</p>
             <div class="neon-animated-box" style="padding: 20px;">
               <p>Próximo evento: Anime Expo 2026</p>

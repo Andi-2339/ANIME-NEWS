@@ -2,22 +2,58 @@
   <div class="top-desc">
     <p>Bienvenido a la mejor fuente de noticias de Anime y Manga a nivel mundial</p>
   </div>
+
   <div class="header-main">
     <div class="logo-container">
       <img src="assets/logo.png" alt="Anime News Logo" class="logo">
     </div>
+
     <div class="search-container">
-      <input type="text" placeholder="Buscar noticias, animes o mangas..." class="search-bar" [(ngModel)]="searchQuery" (keyup.enter)="onSearch()">
+      <input type="text"
+             placeholder="Buscar noticias..."
+             class="search-bar"
+             [(ngModel)]="searchQuery"
+             (keyup.enter)="onSearch()">
       <button class="search-btn" (click)="onSearch()">Buscar</button>
     </div>
   </div>
+
   <nav class="main-nav">
     <ul>
-      <li><a routerLink="/" routerLinkActive="active">Inicio</a></li>
+      <li><a routerLink="/home" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Inicio</a></li>
       <li><a routerLink="/noticias" routerLinkActive="active">Noticias</a></li>
       <li><a routerLink="/catalogo" routerLinkActive="active">Catálogo</a></li>
       <li><a routerLink="/mangas" routerLinkActive="active">Mangas</a></li>
       <li><a routerLink="/temporadas" routerLinkActive="active">Temporadas</a></li>
+
+      <!-- BOTÓN ADMIN (SOLO SI ES ADMIN) -->
+      <li *ngIf="authService.isAdmin()">
+        <a routerLink="/admin/users" routerLinkActive="active" class="admin-link">Usuarios</a>
+      </li>
+      <li *ngIf="authService.isAdmin()">
+        <a routerLink="/admin/moderation" routerLinkActive="active" class="admin-link" style="color: #ffaa00; border-color: #ffaa00;">Moderación</a>
+      </li>
+
+      <!-- BOTONES DE ACCESO -->
+      <li *ngIf="!authService.user()">
+        <a routerLink="/signup" [queryParams]="{mode: 'login'}" class="login-btn">
+          Iniciar Sesión
+        </a>
+      </li>
+      <li *ngIf="!authService.user()">
+        <a routerLink="/signup" [queryParams]="{mode: 'signup'}" class="signup-link-header">
+          Crear Cuenta
+        </a>
+      </li>
+
+      <!-- USUARIO LOGUEADO -->
+      <li *ngIf="authService.user()" class="user-profile-nav">
+        <a routerLink="/profile" class="profile-btn">
+          <span class="user-name">Hola, {{ authService.userName() }}</span>
+        </a>
+        <button (click)="logout()" class="logout-minimal-btn">Salir</button>
+      </li>
+
     </ul>
   </nav>
 </header>
