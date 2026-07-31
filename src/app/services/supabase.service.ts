@@ -69,6 +69,125 @@ export class SupabaseService {
     const { data, error } = await this.supabase
       .from('perfiles')
       .select('*')
+      .order('fecha_creacion', { ascending: false });
+    if (error) throw error;
+    return data;
+  }
+
+  // --- GESTIÓN DE CUENTAS (Prácticas 11-13) ---
+
+  /** Crear un usuario nuevo desde el panel admin */
+  async createUserProfile(profileData: any) {
+    const { data, error } = await this.supabase
+      .from('perfiles')
+      .insert(profileData)
+      .select()
+      .single();
+
+    if (error) throw error;
+    return data;
+  }
+
+  /** Activar o desactivar una cuenta (eliminación lógica) */
+  async toggleUserActive(uid: string, activo: boolean) {
+    const { data, error } = await this.supabase
+      .from('perfiles')
+      .update({ activo })
+      .eq('id', uid)
+      .select()
+      .single();
+
+    if (error) throw error;
+    return data;
+  }
+
+  /** Cambiar el rol de un usuario */
+  async changeUserRole(uid: string, newRole: string) {
+    const { data, error } = await this.supabase
+      .from('perfiles')
+      .update({ rol: newRole })
+      .eq('id', uid)
+      .select()
+      .single();
+
+    if (error) throw error;
+    return data;
+  }
+
+  /** Marcar que requiere cambio de contraseña */
+  async setRequirePasswordChange(uid: string, required: boolean) {
+    const { data, error } = await this.supabase
+      .from('perfiles')
+      .update({ requiere_cambio_password: required })
+      .eq('id', uid)
+      .select()
+      .single();
+
+    if (error) throw error;
+    return data;
+  }
+
+  /** Registrar último acceso */
+  async updateLastAccess(uid: string) {
+    await this.supabase
+      .from('perfiles')
+      .update({ ultimo_acceso: new Date().toISOString() })
+      .eq('id', uid);
+  }
+
+  /** Registrar intento fallido de login */
+  async registerFailedAttempt(uid: string) {
+    // Primero obtener el perfil actual
+    const profile = await this.getUserProfile(uid);
+    if (!profile) return;
+
+    const intentos = (profile.intentos_fallidos || 0) + 1;
+    const updateData: any = { intentos_fallidos: intentos };
+
+    // Si llega a 5 intentos, bloquear por 5 minutos
+    if (intentos >= 5) {
+      const bloqueoHasta = new Date();
+      bloqueoHasta.setMinutes(bloqueoHasta.getMinutes() + 5);
+      updateData.bloqueado_hasta = bloqueoHasta.toISOString();
+    }
+
+    await this.supabase
+      .from('perfiles')
+      .update(updateData)
+      .eq('id', uid);
+  }
+
+  /** Resetear intentos fallidos */
+  async resetFailedAttempts(uid: string) {
+    await this.supabase
+      .from('perfiles')
+      .update({ intentos_fallidos: 0, bloqueado_hasta: null })
+      .eq('id', uid);
+  }
+
+  /** Obtener usuario por email */
+  async getUserByEmail(email: string) {
+    const { data, error } = await this.supabase
+      .from('perfiles')
+      .select('*')
+      .eq('email', email)
+      .single();
+
+    if (error && error.code !== 'PGRST116') {
+      console.error('[Supabase] Error buscando por email:', error);
+    }
+    return data;
+  }
+
+  // --- BITÁCORA DE AUDITORÍA ---
+
+  async getAuditLogs(limit: number = 200) {
+    const { data, error } = await this.supabase
+      .from('bitacora')
+      .select('*')
+      .order('created_at', { ascending: false })
+      .limit(limit);
+
     if (error) throw error;
     return data;
   }

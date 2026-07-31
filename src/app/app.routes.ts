@@ -41,6 +41,11 @@ export const routes: Routes = [
       loadComponent: () => import('./pages/temporadas/temporadas').then(m => m.Temporadas)
     },
       {
+        path: 'tareas',
+        loadComponent: () => import('./pages/task-manager/task-manager').then(m => m.TaskManagerComponent),
+        canActivate: [adminGuard]
+      },
+      {
         path: 'profile',
         loadComponent: () => import('./pages/profile/profile').then(m => m.ProfileComponent)
       },
@@ -52,6 +57,11 @@ export const routes: Routes = [
       {
         path: 'admin/moderation',
         loadComponent: () => import('./pages/admin/moderation').then(m => m.ModerationComponent),
+        canActivate: [adminGuard]
+      },
+      {
+        path: 'admin/audit',
+        loadComponent: () => import('./pages/admin/audit-log').then(m => m.AuditLogComponent),
         canActivate: [adminGuard]
       }
   ]

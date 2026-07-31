@@ -1,4 +1,4 @@
-import { Component, inject, signal, OnInit } from '@angular/core';
+import { Component, inject, signal, OnInit, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
@@ -119,6 +119,7 @@ export class SignupComponent implements OnInit {
   authService = inject(AuthService);
   router = inject(Router);
   route = inject(ActivatedRoute);
+  cdr = inject(ChangeDetectorRef);
 
   isLoginMode = true;
   loading = false;
@@ -154,11 +155,11 @@ export class SignupComponent implements OnInit {
     this.errorMessage = '';
     this.successMessage = '';
 
-    // PROTECCIÓN CONTRA CARGA INFINITA (BLOQUEO DE RED)
     const timeout = setTimeout(() => {
       if (this.loading) {
         this.loading = false;
         this.errorMessage = '⌛ Error de conexión: El servidor de Supabase no responde. Revisa que el ID del proyecto sea correcto o intenta usar otra red.';
+        this.cdr.detectChanges();
       }
     }, 10000);
 
@@ -190,6 +191,7 @@ export class SignupComponent implements OnInit {
       this.errorMessage = err.message || 'Error de autenticación.';
     } finally {
       this.loading = false;
+      this.cdr.detectChanges();
     }
   }
 }

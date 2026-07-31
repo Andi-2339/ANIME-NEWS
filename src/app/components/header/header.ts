@@ -1,8 +1,9 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RouterModule, Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
+import { SeasonalThemeService } from '../../services/seasonal-theme.service';
 
 @Component({
   selector: 'app-header',
@@ -13,8 +14,12 @@ import { AuthService } from '../../services/auth.service';
 export class Header {
 
   authService = inject(AuthService);
+  themeService = inject(SeasonalThemeService);
   router = inject(Router);
   searchQuery = '';
+
+  // Dropdown hover state
+  activeDropdown = signal<string | null>(null);
 
   login() {
     this.authService.loginWithGoogle()
@@ -32,7 +37,14 @@ export class Header {
   onSearch() {
     if (this.searchQuery.trim()) {
       console.log('Buscar:', this.searchQuery);
-      // Implementar navegación a resultados si es necesario
     }
+  }
+
+  openDropdown(name: string) {
+    this.activeDropdown.set(name);
+  }
+
+  closeDropdown() {
+    this.activeDropdown.set(null);
   }
 }

@@ -1140,3 +1140,410 @@ app-sidebar .sidebar {
 .mt-3 {
   margin-top: 1rem;
 }
+
+/* ============================================ */
+/* DROPDOWN HOVER MENUS (Prácticas 7-8)        */
+/* ============================================ */
+
+.nav-dropdown {
+  position: relative;
+}
+
+.nav-dropdown > a {
+  cursor: pointer;
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #0a0a0a;
+  border: 1px solid var(--purple);
+  border-radius: 12px;
+  min-width: 200px;
+  padding: 10px 0;
+  z-index: 100;
+  box-shadow: 0 10px 30px rgba(155, 77, 255, 0.3), 0 0 15px rgba(0, 234, 255, 0.1);
+  animation: dropdownFadeIn 0.25s ease;
+}
+
+.dropdown-menu a {
+  display: block;
+  padding: 10px 20px;
+  color: #ccc;
+  text-decoration: none;
+  font-size: 0.9em !important;
+  transition: all 0.2s;
+  white-space: nowrap;
+}
+
+.dropdown-menu a:hover {
+  background: rgba(155, 77, 255, 0.15);
+  color: var(--blue);
+  padding-left: 25px;
+  text-shadow: 0 0 8px var(--blue);
+}
+
+.dropdown-admin {
+  border-color: var(--pink);
+  box-shadow: 0 10px 30px rgba(255, 46, 209, 0.3);
+}
+
+@keyframes dropdownFadeIn {
+  from { opacity: 0; transform: translateX(-50%) translateY(-10px); }
+  to { opacity: 1; transform: translateX(-50%) translateY(0); }
+}
+
+/* ============================================ */
+/* HIGHLIGHT HOVER EFFECTS (Prácticas 9-10)    */
+/* ============================================ */
+
+.card-hover-highlight {
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  cursor: pointer;
+}
+
+.card-hover-highlight:hover,
+.card-highlighted {
+  transform: scale(1.03) translateY(-8px) !important;
+  border-color: var(--blue) !important;
+  box-shadow:
+    0 0 25px rgba(0, 234, 255, 0.4),
+    0 0 50px rgba(155, 77, 255, 0.2),
+    0 20px 40px rgba(0, 0, 0, 0.5) !important;
+}
+
+.card-highlighted {
+  background: rgba(0, 234, 255, 0.05) !important;
+}
+
+.card-hover-info {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+  margin: 10px 0;
+  animation: hoverInfoSlide 0.3s ease;
+}
+
+.hover-tag {
+  padding: 4px 12px;
+  background: rgba(255, 46, 209, 0.2);
+  color: var(--pink);
+  border: 1px solid var(--pink);
+  border-radius: 15px;
+  font-size: 0.8em;
+  font-weight: bold;
+}
+
+.hover-date {
+  color: #666;
+  font-size: 0.8em;
+  font-style: italic;
+}
+
+@keyframes hoverInfoSlide {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ============================================ */
+/* SEASONAL THEMES (Prácticas 7-8)             */
+/* ============================================ */
+
+/* Halloween */
+body.theme-halloween {
+  background: linear-gradient(135deg, #0a0500 0%, #1a0a00 40%, #2d1400 100%) !important;
+  --pink: #ff6600;
+  --blue: #ff3300;
+  --purple: #992200;
+}
+
+body.theme-halloween::before {
+  background:
+    radial-gradient(circle at 20% 30%, #ff6600 0%, transparent 40%),
+    radial-gradient(circle at 80% 70%, #ff3300 0%, transparent 40%),
+    radial-gradient(circle at 50% 50%, #992200 0%, transparent 40%) !important;
+}
+
+body.theme-halloween .header {
+  border-bottom-color: #ff6600 !important;
+  box-shadow: 0 10px 30px rgba(255, 102, 0, 0.3) !important;
+}
+
+/* Christmas */
+body.theme-christmas {
+  background: linear-gradient(135deg, #050a00 0%, #0a1500 40%, #001a00 100%) !important;
+  --pink: #ff0000;
+  --blue: #00cc00;
+  --purple: #ffd700;
+}
+
+body.theme-christmas::before {
+  background:
+    radial-gradient(circle at 20% 30%, #ff0000 0%, transparent 40%),
+    radial-gradient(circle at 80% 70%, #00cc00 0%, transparent 40%),
+    radial-gradient(circle at 50% 50%, #ffd700 0%, transparent 40%) !important;
+}
+
+body.theme-christmas .header {
+  border-bottom-color: #ff0000 !important;
+}
+
+/* Summer */
+body.theme-summer {
+  background: linear-gradient(135deg, #0a0a00 0%, #1a1500 40%, #2d2200 100%) !important;
+  --pink: #ffcc00;
+  --blue: #ff6600;
+  --purple: #ff9900;
+}
+
+body.theme-summer::before {
+  background:
+    radial-gradient(circle at 20% 30%, #ffcc00 0%, transparent 40%),
+    radial-gradient(circle at 80% 70%, #ff6600 0%, transparent 40%),
+    radial-gradient(circle at 50% 50%, #ff9900 0%, transparent 40%) !important;
+}
+
+/* Valentine */
+body.theme-valentine {
+  --pink: #ff1493;
+  --blue: #ff69b4;
+  --purple: #ff007f;
+}
+
+body.theme-valentine::before {
+  background:
+    radial-gradient(circle at 20% 30%, #ff1493 0%, transparent 40%),
+    radial-gradient(circle at 80% 70%, #ff69b4 0%, transparent 40%),
+    radial-gradient(circle at 50% 50%, #ff007f 0%, transparent 40%) !important;
+}
+
+/* Spring */
+body.theme-spring {
+  --pink: #ff69b4;
+  --blue: #00ff88;
+  --purple: #ffcc00;
+}
+
+body.theme-spring::before {
+  background:
+    radial-gradient(circle at 20% 30%, #ff69b4 0%, transparent 40%),
+    radial-gradient(circle at 80% 70%, #00ff88 0%, transparent 40%),
+    radial-gradient(circle at 50% 50%, #ffcc00 0%, transparent 40%) !important;
+}
+
+/* Autumn */
+body.theme-autumn {
+  --pink: #cc6600;
+  --blue: #996633;
+  --purple: #cc3300;
+}
+
+body.theme-autumn::before {
+  background:
+    radial-gradient(circle at 20% 30%, #cc6600 0%, transparent 40%),
+    radial-gradient(circle at 80% 70%, #996633 0%, transparent 40%),
+    radial-gradient(circle at 50% 50%, #cc3300 0%, transparent 40%) !important;
+}
+
+/* New Year */
+body.theme-newyear {
+  --pink: #ff00ff;
+  --blue: #00ffff;
+  --purple: #ffff00;
+}
+
+body.theme-newyear::before {
+  background:
+    radial-gradient(circle at 20% 30%, #ff00ff 0%, transparent 40%),
+    radial-gradient(circle at 80% 70%, #00ffff 0%, transparent 40%),
+    radial-gradient(circle at 50% 50%, #ffff00 0%, transparent 40%) !important;
+}
+
+/* ============================================ */
+/* SIGNUP HEADER LINK                          */
+/* ============================================ */
+
+app-header .signup-link-header {
+  border: 1px solid var(--pink);
+  padding: 5px 15px;
+  border-radius: 20px;
+  font-size: 0.9em !important;
+  color: var(--pink) !important;
+  transition: 0.3s;
+}
+
+app-header .signup-link-header:hover {
+  background: var(--pink);
+  color: #000 !important;
+  box-shadow: 0 0 15px var(--pink);
+}
+
+app-header .admin-link {
+  color: #ffaa00 !important;
+  border: 1px solid #ffaa00;
+  padding: 3px 12px;
+  border-radius: 15px;
+  font-size: 0.85em !important;
+  cursor: pointer;
+}
+
+/* ============================================ */
+/* RESPONSIVE DESIGN (Prácticas 1-2)           */
+/* ============================================ */
+
+/* === SMART TV (≥1920px) === */
+@media (min-width: 1920px) {
+  body { font-size: 18px; }
+
+  app-root .content-wrapper {
+    max-width: 1800px;
+    padding: 0 4cm;
+  }
+
+  app-root .basic-info h1 { font-size: 4.5em; }
+
+  .slider { height: 600px; }
+  .img-banner { height: 600px; }
+
+  .slider-text h1 { font-size: 4em; }
+
+  .card img { width: 550px; height: 350px; }
+  .card h3 { font-size: 2.5em; }
+  .card p { font-size: 1.5em; }
+
+  app-footer .footer { padding: 100px 4cm 60px; }
+}
+
+/* === DESKTOP (1025px – 1919px) — DEFAULT === */
+
+/* === TABLET (769px – 1024px) === */
+@media (max-width: 1024px) {
+  app-root .content-wrapper {
+    flex-direction: column;
+    padding: 0 20px;
+    gap: 30px;
+  }
+
+  app-root .main-content { flex: auto; }
+  app-root .sidebar-root { flex: auto; }
+
+  .card { flex-direction: column; }
+  .card img { width: 100%; height: 220px; }
+
+  app-header .header-main { flex-direction: column; gap: 15px; }
+
+  app-root .main-nav ul {
+    flex-wrap: wrap;
+    gap: 15px;
+  }
+
+  app-footer .footer { padding: 40px 20px 30px; }
+  app-footer .footer-grid { grid-template-columns: 1fr; }
+}
+
+/* === MOBILE (481px – 768px) === */
+@media (max-width: 768px) {
+  body { font-size: 14px; }
+
+  app-root .content-wrapper {
+    flex-direction: column;
+    padding: 0 15px;
+    gap: 20px;
+    margin: 20px auto;
+  }
+
+  .slider { height: 250px; }
+  .img-banner { height: 250px; }
+  .slider-text h1 { font-size: 1.5em; }
+
+  app-root .basic-info h1 { font-size: 2em; }
+  app-root .persuasive-text { font-size: 1em; padding: 15px; }
+
+  .card { flex-direction: column; padding: 15px; gap: 15px; }
+  .card img { width: 100%; height: 180px; }
+  .card h3 { font-size: 1.3em; }
+
+  app-header .header { padding: 10px 15px !important; }
+  app-header .header-main { flex-direction: column; gap: 10px; padding: 10px 15px; }
+
+  app-root .main-nav ul {
+    flex-wrap: wrap;
+    gap: 10px;
+    padding: 10px;
+  }
+
+  app-header .main-nav a { font-size: 0.9em !important; }
+
+  .search-bar { width: 200px !important; }
+
+  .dropdown-menu { min-width: 160px; }
+
+  app-footer .footer { padding: 30px 15px; margin-top: 40px; }
+  app-footer .footer-grid { grid-template-columns: 1fr; gap: 25px; }
+  app-footer .footer-col h3 { font-size: 1.3em; }
+  app-footer .footer-bottom { flex-direction: column; text-align: center; }
+
+  .premium-title { font-size: 2em; }
+  .premium-subtitle { font-size: 1em; }
+  .gateway-actions { flex-direction: column; gap: 15px; }
+  .gateway-logo { width: 150px; }
+}
+
+/* === MOBILE SMALL (≤480px) === */
+@media (max-width: 480px) {
+  body { font-size: 13px; }
+
+  .slider { height: 200px; }
+  .img-banner { height: 200px; }
+  .slider-text h1 { font-size: 1.2em; }
+
+  app-root .main-nav ul { gap: 8px; }
+  app-header .main-nav a { font-size: 0.8em !important; }
+
+  .logo { width: 80px !important; max-width: 120px !important; }
+  .search-bar { width: 150px !important; font-size: 0.8em; }
+  .search-btn { padding: 8px 15px; font-size: 0.8em; }
+
+  .card img { height: 150px; }
+
+  .premium-title { font-size: 1.6em; }
+  .btn-neon-primary, .btn-neon-outline { padding: 12px 25px; font-size: 0.9em; }
+}
+
+/* === WEARABLE (≤280px) === */
+@media (max-width: 280px) {
+  body { font-size: 11px; }
+
+  .slider { height: 120px; }
+  .img-banner { height: 120px; }
+  .slider-text h1 { font-size: 0.9em; }
+  .slider-text p { display: none; }
+
+  app-root .content-wrapper { padding: 0 8px; margin: 10px auto; }
+
+  app-header .header { padding: 5px 8px !important; }
+  app-header .header-main { padding: 5px 8px; }
+
+  .logo { width: 50px !important; max-width: 60px !important; }
+  .search-container { display: none; }
+  .top-desc { font-size: 0.7em; padding: 4px 0; }
+
+  app-root .main-nav ul { gap: 5px; flex-wrap: wrap; justify-content: center; }
+  app-header .main-nav a { font-size: 0.65em !important; }
+
+  .card { padding: 10px; gap: 10px; }
+  .card img { width: 100%; height: 100px; }
+  .card h3 { font-size: 1em; }
+  .card p { font-size: 0.8em; }
+
+  .premium-title { font-size: 1.2em; }
+  .premium-subtitle { font-size: 0.8em; }
+  .gateway-logo { width: 80px; }
+  .gateway-actions { flex-direction: column; gap: 10px; }
+  .btn-neon-primary, .btn-neon-outline { padding: 8px 15px; font-size: 0.8em; }
+
+  app-footer .footer { padding: 15px 8px; margin-top: 20px; }
+  .dropdown-menu { min-width: 130px; }
+}

@@ -21,17 +21,66 @@
   <nav class="main-nav">
     <ul>
       <li><a routerLink="/home" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Inicio</a></li>
-      <li><a routerLink="/noticias" routerLinkActive="active">Noticias</a></li>
-      <li><a routerLink="/catalogo" routerLinkActive="active">Catálogo</a></li>
+
+      <!-- DROPDOWN: Noticias -->
+      <li class="nav-dropdown"
+          (mouseenter)="openDropdown('noticias')"
+          (mouseleave)="closeDropdown()">
+        <a routerLink="/noticias" routerLinkActive="active">Noticias ▾</a>
+        @if (activeDropdown() === 'noticias') {
+          <div class="dropdown-menu">
+            <a routerLink="/noticias" (click)="closeDropdown()">📰 Últimas Noticias</a>
+            <a routerLink="/noticias" fragment="destacadas" (click)="closeDropdown()">⭐ Destacadas</a>
+            <a routerLink="/noticias" fragment="archivo" (click)="closeDropdown()">📁 Archivo</a>
+          </div>
+        }
+      </li>
+
+      <!-- DROPDOWN: Catálogo -->
+      <li class="nav-dropdown"
+          (mouseenter)="openDropdown('catalogo')"
+          (mouseleave)="closeDropdown()">
+        <a routerLink="/catalogo" routerLinkActive="active">Catálogo ▾</a>
+        @if (activeDropdown() === 'catalogo') {
+          <div class="dropdown-menu">
+            <a routerLink="/catalogo" (click)="closeDropdown()">🎬 Anime Series</a>
+            <a routerLink="/mangas" (click)="closeDropdown()">📚 Mangas</a>
+            <a routerLink="/temporadas" (click)="closeDropdown()">📅 Temporadas</a>
+          </div>
+        }
+      </li>
+
       <li><a routerLink="/mangas" routerLinkActive="active">Mangas</a></li>
       <li><a routerLink="/temporadas" routerLinkActive="active">Temporadas</a></li>
+      <li *ngIf="authService.isAdmin()"><a routerLink="/tareas" routerLinkActive="active">Tareas</a></li>
 
-      <!-- BOTÓN ADMIN (SOLO SI ES ADMIN) -->
-      <li *ngIf="authService.isAdmin()">
-        <a routerLink="/admin/users" routerLinkActive="active" class="admin-link">Usuarios</a>
+      <!-- DROPDOWN: Admin (SOLO SI ES ADMIN) -->
+      <li *ngIf="authService.isAdmin()" class="nav-dropdown"
+          (mouseenter)="openDropdown('admin')"
+          (mouseleave)="closeDropdown()">
+        <a class="admin-link">Admin ▾</a>
+        @if (activeDropdown() === 'admin') {
+          <div class="dropdown-menu dropdown-admin">
+            <a routerLink="/admin/users" (click)="closeDropdown()">👥 Usuarios</a>
+            <a routerLink="/admin/moderation" (click)="closeDropdown()">🛡️ Moderación</a>
+            <a routerLink="/admin/audit" (click)="closeDropdown()">📝 Bitácora</a>
+          </div>
+        }
       </li>
-      <li *ngIf="authService.isAdmin()">
-        <a routerLink="/admin/moderation" routerLinkActive="active" class="admin-link" style="color: #ffaa00; border-color: #ffaa00;">Moderación</a>
+
+      <!-- DROPDOWN: Temas (TESTING) -->
+      <li class="nav-dropdown"
+          (mouseenter)="openDropdown('temas')"
+          (mouseleave)="closeDropdown()">
+        <a>🎨 Temas ▾</a>
+        @if (activeDropdown() === 'temas') {
+          <div class="dropdown-menu">
+            <a (click)="themeService.forceTheme('default'); closeDropdown()">⚡ Default</a>
+            <a (click)="themeService.forceTheme('summer'); closeDropdown()">☀️ Verano</a>
+            <a (click)="themeService.forceTheme('halloween'); closeDropdown()">🎃 Halloween</a>
+            <a (click)="themeService.forceTheme('christmas'); closeDropdown()">🎄 Navidad</a>
+          </div>
+        }
       </li>
 
       <!-- BOTONES DE ACCESO -->
