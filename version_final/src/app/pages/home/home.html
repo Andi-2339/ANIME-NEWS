@@ -1,0 +1,72 @@
+<div class="slider">
+  <img [src]="themeService.currentTheme().bannerImage" class="img-banner">
+
+  <div class="slider-text">
+    <h1 class="neon-text pulsing-text">
+      Portal Anime News: La Actualidad a tu Alcance
+    </h1>
+    <p>Lo más nuevo del mundo otaku</p>
+  </div>
+</div>
+
+<div class="content-wrapper">
+    <main class="main-content">
+        <h2>Últimas Noticias</h2>
+        <div class="cards">
+            <!-- Card 1: Demon Slayer -->
+            <div class="card card-hover-highlight"
+                 [class.card-highlighted]="highlightedCard() === 0"
+                 (mouseenter)="onCardHover(0)"
+                 (mouseleave)="onCardLeave()">
+                <img src="assets/DemonSlayer.jpg">
+                <div class="card-text">
+                    <h3>Demon Slayer rompe récord</h3>
+                    <p>La nueva película se convierte en la más vista del año.</p>
+                    <div class="card-hover-info" *ngIf="highlightedCard() === 0">
+                      <span class="hover-tag">🔥 Trending</span>
+                      <span class="hover-date">Publicado: Julio 2026</span>
+                    </div>
+                    <button>Leer más</button>
+                </div>
+            </div>
+
+            <!-- Card 2: Jujutsu Kaisen -->
+            <div class="card card-hover-highlight"
+                 [class.card-highlighted]="highlightedCard() === 1"
+                 (mouseenter)="onCardHover(1)"
+                 (mouseleave)="onCardLeave()">
+                <img src="assets/JujutsuKaisen.jpg">
+                <div class="card-text">
+                    <h3>Jujutsu Kaisen nueva temporada</h3>
+                    <p>MAPPA anuncia nuevos episodios.</p>
+                    <div class="card-hover-info" *ngIf="highlightedCard() === 1">
+                      <span class="hover-tag">⭐ Destacado</span>
+                      <span class="hover-date">Publicado: Julio 2026</span>
+                    </div>
+                    <button>Leer más</button>
+                </div>
+            </div>
+
+            <!-- Card 3: Naruto -->
+            <div class="card card-hover-highlight"
+                 [class.card-highlighted]="highlightedCard() === 2"
+                 (mouseenter)="onCardHover(2)"
+                 (mouseleave)="onCardLeave()">
+                <img src="assets/Naruto.jpg">
+                <div class="card-text">
+                    <h3>Naruto aniversario</h3>
+                    <p>Un especial con nuevos episodios.</p>
+                    <div class="card-hover-info" *ngIf="highlightedCard() === 2">
+                      <span class="hover-tag">🎉 Especial</span>
+                      <span class="hover-date">Publicado: Julio 2026</span>
+                    </div>
+                    <button>Leer más</button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <aside class="sidebar-root">
+        <app-sidebar></app-sidebar>
+    </aside>
+</div>
