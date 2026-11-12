@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">anime-news</string>
+    <string name="title_activity_main">anime-news</string>
+    <string name="package_name">com.animenews.app</string>
+    <string name="custom_url_scheme">com.animenews.app</string>
+</resources>
